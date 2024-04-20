@@ -6,7 +6,6 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { NewsRu } from './models/news.model';
-import { FilesService } from '../files/files.service';
 import { Op } from 'sequelize';
 import { UpdateNewsImgDto} from './dto/update-img.dto';
 import { CreateNewsimgDto } from './dto/create-img.dto';
@@ -14,14 +13,11 @@ import { CreateNewsimgDto } from './dto/create-img.dto';
 @Injectable()
 export class NewsService {
   constructor(
-    @InjectModel(NewsRu) private newsRepository: typeof NewsRu,
-    private readonly fileService: FilesService,
+    @InjectModel(NewsRu) private newsRepository: typeof NewsRu
   ) {}
 
   async create(createNewsDto: CreateNewsimgDto) {
-    const news = await this.newsRepository.create({
-      text: createNewsDto.text
-    });
+    const news = await this.newsRepository.create(createNewsDto);
     return news;
   }
 

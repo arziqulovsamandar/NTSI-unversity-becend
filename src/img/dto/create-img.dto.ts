@@ -7,14 +7,17 @@ export class CreateNewsimgDto {
     description: 'News ru',
   })
   @IsString()
-  description: string;
+  url: string;
 
   @ApiProperty({ example: '1', description: 'Product id' })
+  @IsNumber()
   text_uz: number;
 
   @ApiProperty({ example: '1', description: 'Product id' })
+  @IsNumber()
   text_ru: number;
 
   @ApiProperty({ example: '1', description: 'Product id' })
+  @IsNumber()
   text_en: number;
 }

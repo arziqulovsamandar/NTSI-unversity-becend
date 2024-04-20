@@ -12,8 +12,7 @@ import { NewsRu } from 'src/newsRu/models/news.model';
 import { NewsUz } from 'src/newsUz/models/news.model';
 
 interface ImgAttrs {
-  description: string;
-  image: string;
+  url: string;
   text_uz: number;
   text_ru: number;
   text_en: number;
@@ -34,16 +33,7 @@ export class Img extends Model<Img, ImgAttrs> {
     type: DataType.STRING,
     allowNull: false,
   })
-  description: string;
-
-  @ApiProperty({
-    example: 'image.jpg',
-    description: 'Category`s image',
-  })
-  @Column({
-    type: DataType.STRING,
-  })
-  image: string;
+  url: string;
 
   @ForeignKey(() => NewsUz)
   @Column({
@@ -52,7 +42,7 @@ export class Img extends Model<Img, ImgAttrs> {
   })
   text_uz: number;
 
-  @BelongsTo(() => NewsUz)
+  @BelongsTo(() => NewsUz,'text_uz')
   newsUz: NewsUz;
 
   @ForeignKey(() => NewsRu)
@@ -64,7 +54,7 @@ export class Img extends Model<Img, ImgAttrs> {
 
   @BelongsTo(() => NewsRu)
   newsRu: NewsRu;
-  
+
   @ForeignKey(() => NewsEn)
   @Column({
     type: DataType.INTEGER,

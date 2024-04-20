@@ -4,13 +4,11 @@ import { NewsController } from './news.controller';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { NewsUz } from './models/news.model';
 import { JwtModule } from '@nestjs/jwt';
-import { FilesModule } from 'src/files/files.module';
 
 @Module({
   imports: [
     SequelizeModule.forFeature([NewsUz]),
-    JwtModule.register({}),
-    FilesModule
+    JwtModule.register({})
   ],
   controllers: [NewsController],
   providers: [NewsService],

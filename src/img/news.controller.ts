@@ -30,12 +30,10 @@ export class ImgController {
   @ApiResponse({ status: 200, description: 'New  News', type: [Img] })
   @UseGuards(AdminGuard)
   @Post('create/img')
-  @UseInterceptors(FileInterceptor('image'))
   create(
-    @Body() createNewsDto: CreateNewsimgDto,
-    @UploadedFile() image: any,
+    @Body() createNewsDto: CreateNewsimgDto
   ): Promise<Img> {
-    return this.newsService.create(createNewsDto, image);
+    return this.newsService.create(createNewsDto);
   }
 
   @ApiOperation({ summary: 'View all news' })
@@ -60,16 +58,6 @@ export class ImgController {
     return this.newsService.updateByIdUz(+id, updatenewsuzDto);
   }
 
-
-  @ApiOperation({ summary: 'Image by id update ' })
-  @ApiResponse({ status: 201, description: 'update by id image', type: [Post] })
-  @HttpCode(HttpStatus.OK)
-  @UseGuards(AdminGuard)
-  @Put('file/:id')
-  @UseInterceptors(FileInterceptor('image'))
-  updateFile(@Param('id') id: string, @UploadedFile() image: any) {
-    return this.newsService.updateImage(+id, image);
-  }
 
   @ApiOperation({ summary: 'View news by id' })
   @ApiResponse({ status: 200, description: 'News', type: Img })

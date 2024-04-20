@@ -6,7 +6,6 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { resolve } from 'path';
 import { Admin } from './admin/models/admin.model';
 import { AdminModule } from './admin/admin.module';
-import { FilesModule } from './files/files.module';
 import { NewsEn } from './newsEn/models/news.model';
 import { NewsRu } from './newsRu/models/news.model';
 import { NewsUz } from './newsUz/models/news.model';
@@ -37,7 +36,6 @@ import { ImgModule } from './img/news.module';
       logging: false,
     }),
     AdminModule,
-    FilesModule,
     NewsEnModule,
     NewsRuModule,
     NewsUzModule,
